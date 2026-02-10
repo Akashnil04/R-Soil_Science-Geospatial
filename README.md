@@ -1,11 +1,10 @@
-\# R – Soil Science \& Geospatial Analysis
+\R – Soil Science \& Geospatial Analysis
 
 
 
 This repository contains \*\*R-based workflows for soil science analysis integrated with geospatial techniques\*\*.  
 
 It is developed for academic, research, and applied studies in \*\*soil fertility, spatial variability, and precision agriculture\*\*.
-
 
 
 The repository is intended to document reproducible methods combining \*\*soil data analysis, GIS, and remote sensing\*\* using R.
@@ -16,7 +15,7 @@ The repository is intended to document reproducible methods combining \*\*soil d
 
 
 
-\## 🎯 Objectives
+\ 🎯 Objectives
 
 
 
@@ -36,7 +35,7 @@ The repository is intended to document reproducible methods combining \*\*soil d
 
 
 
-\## 📂 Repository Structure
+\ 📂 Repository Structure
 
 
 
