@@ -197,3 +197,117 @@ out1 <- augmentedRCBD(factor(blk), factor(trt), yield, method.comp = "lsd",
 
 ################################################################
 
+
+
+
+####CRD
+library(agricolae)
+getwd()
+setwd("D:\\R_Workshop\\ICAR")
+## IMPORT DATA
+
+CRD_DATA<-read.csv("D:\\R_Workshop\\ICAR\\crd_data.csv",header=TRUE)
+
+str(CRD_DATA)
+# Convert Treatment column to factor 
+
+CRD_DATA$Treatment<-as.factor(CRD_DATA$Treatment)
+
+#now check again
+str(CRD_DATA)
+
+
+#Fit Linear Model and Perform ANOVA
+
+crd_model<-lm(Yield~Treatment,data=CRD_DATA)
+
+crd_anova<-anova(crd_model)
+crd_anova
+
+### Treatments Comparison (LSD Test)
+# Load agricolae package
+library(agricolae)
+crd_lsd<-LSD.test(crd_model, "Treatment")
+# Perform LSD test
+LSD_result <- LSD.test(crd_model, "Treatment",alpha=0.01)
+
+
+
+setwd("D:\\R_Workshop\\ICAR")
+RBD_DATA<-read.csv(file.choose(),header = TRUE)
+
+str(RBD_DATA)
+RBD_DATA$Replication<-as.factor(RBD_DATA$Replication)
+RBD_DATA$Treatment<-as.factor(RBD_DATA$Treatment)
+rbd_model<-lm(Yield~ Replication+ Treatment,data = RBD_DATA)
+
+rbd_anova<-anova(rbd_model)
+rbd_anova
+RBD
+
+library(agricolae)
+rbd_lsd <- LSD.test(rbd_model,"Treatment")
+
+
+setwd("D:\\R_Workshop\\ICAR")
+FACT_DATA <- read.csv(file.choose(), header=TRUE)
+str(FACT_DATA)
+FACT_DATA$Replication <- as.factor(FACT_DATA$Replication)
+FACT_DATA$A <- as.factor(FACT_DATA$A)
+FACT_DATA$B <- as.factor(FACT_DATA$B)
+str(FACT_DATA)
+fact_model <- lm(Yield~ Replication + A + B + A:B, data=FACT_DATA)
+fact_anova <- anova(fact_model)
+
+
+#### RBD
+
+RBD_DATA<-read.csv(file.choose(),header = TRUE)
+RBD_DATA
+str(RBD_DATA)
+# Convert Replication & Treatment column to factor 
+RBD_DATA$Replication<-as.factor(RBD_DATA$Replication)
+RBD_DATA$Treatment<-as.factor(RBD_DATA$Treatment)
+str(RBD_DATA)
+
+#Fit Linear Model and Perform ANOVA
+
+rbd_model<-lm(Yield~Replication+Treatment,data=RBD_DATA)
+
+rbd_anova<-anova(rbd_model)
+
+
+# Load agricolae package
+library(agricolae)
+# Perform LSD test
+LSD_result <- LSD.test(rbd_model, "Treatment")
+
+
+#Two factor factorial
+
+FACT_DATA<-read.csv(file.choose(),header = TRUE)
+
+#convert Replication, A and B column to factor
+FACT_DATA$Replication<-as.factor(FACT_DATA$Replication)
+FACT_DATA$A<-as.factor(FACT_DATA$A)
+FACT_DATA$B<-as.factor(FACT_DATA$B)
+
+
+#Fit Linear Model and Perform ANOVA
+
+fact_model<-lm(Yield ~ Replication +A+B+A:B, data = FACT_DATA)
+
+fact_anova<-anova(fact_model)
+
+
+### Treatments Comparison (LSD Test)
+library(agricolae)
+# LSD for main effects
+LSD_A <- LSD.test(fact_model, "A")
+
+LSD_B <- LSD.test(fact_model, "B")
+
+
+LSD_AB <- LSD.test(fact_model, c("A","B"))
+
+
